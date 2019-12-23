@@ -17,16 +17,14 @@ def cacl_mean input
 end
 
 def cacl_median input
-  input.sort!
-  index = input.count / 2
-  return input[index] if input.count.odd?
-
-  (input[index] + input[index - 1]) / 2.0
+  sorted = input.sort
+  len = sorted.length
+  (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
 end
 
-def calc_mode arr
-  freq = arr.inject(Hash.new(0)) { |h, v| h[v] += 1; h }
-  arr.max_by { |v| freq[v] }
+def calc_mode input
+  freq = input.inject(Hash.new(0)) { |h, v| h[v] += 1; h }
+  input.max_by { |v| freq[v] }
 end
 
 input = read_input
